@@ -2,7 +2,7 @@
 namespace App\Model;
 
 class CorrentistaModel extends Model {
-	public $id;
+	public $id, $nome, $cpf, $data_nasc, $senha;
 
 	public function save() 
 	{

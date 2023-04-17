@@ -2,7 +2,7 @@
 namespace App\Model;
 
 class TransacaoModel extends Model {
-	public $id;
+	public $id, $valor, $data_hora, $id_conta_enviou, $id_conta_recebeu;
 
 	public function save() 
 	{

@@ -2,7 +2,7 @@
 namespace App\Model;
 
 class ContaModel extends Model {
-	public $id;
+	public $id, $tipo, $saldo, $limite, $id_correntista;
 
 	public function save() 
 	{

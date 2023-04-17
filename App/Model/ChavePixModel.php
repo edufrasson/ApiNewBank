@@ -2,7 +2,7 @@
 namespace App\Model;
 
 class ChavePixModel extends Model {
-	public $id;
+	public $id, $tipo, $chave, $id_conta;
 
 	public function save() 
 	{
