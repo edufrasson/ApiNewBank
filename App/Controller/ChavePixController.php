@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 class ChavePixController extends Controller {
-	public static function insert() 
+	public static function save() 
 	{
 
 	}

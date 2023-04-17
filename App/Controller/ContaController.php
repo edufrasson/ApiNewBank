@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 class ContaController extends Controller {
-	public static function insert() 
+	public static function save() 
 	{
 
 	}
@@ -12,7 +12,16 @@ class ContaController extends Controller {
 
 	}
 
-	public static function update() 
+	public static function extrato() 
+	{
+
+	}
+
+	public static function enviarPix()
+	{
+
+	}
+	public static function receberPix()
 	{
 
 	}

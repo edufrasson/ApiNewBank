@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 class CorrentistaController extends Controller {
-	public static function insert() 
+	public static function save() 
 	{
 
 	}
@@ -12,7 +12,7 @@ class CorrentistaController extends Controller {
 
 	}
 
-	public static function update() 
+	public static function auth() 
 	{
 
 	}

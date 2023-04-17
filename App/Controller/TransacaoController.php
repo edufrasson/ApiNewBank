@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 class TransacaoController extends Controller {
-	public static function insert() 
+	public static function save() 
 	{
 
 	}
