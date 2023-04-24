@@ -57,24 +57,31 @@ class ChavePixDAO extends DAO
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
 
-    public function selectById()
+    public function selectById($id)
     {
         $sql = "SELECT cp.*,
                 co.nome as nome_conta
         FROM ChavePix cp 
         JOIN Conta c ON c.id = cp.id_conta
         JOIN Correntista co ON co.id = c.id_correntista
-
+        WHERE cp.id = ?
         ";
 
         $stmt = $this->conexao->prepare($sql);
+        $stmt->bindValue(1, $id);
 
         $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_CLASS);
+        return $stmt->fetchObject();
     }
 
-    public function delete()
+    public function delete($id)
     {
+        $sql = "DELETE FROM chavepix WHERE id = ?";
+
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->bindValue(1, $id);
+
+        $stmt->execute();       
     }
 }
