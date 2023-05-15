@@ -11,7 +11,7 @@ class CorrentistaModel extends Model {
 	{
 		$dao = new CorrentistaDAO();
 		if($this->id == null)
-			$dao->insert($this);
+			return $dao->insert($this);
 		else
 			$dao->update($this);
 	}
@@ -35,5 +35,11 @@ class CorrentistaModel extends Model {
 		$dao = new CorrentistaDAO();
 
 		$this->rows = $dao->selectById($id);
+	}
+
+	public function auth($cpf, $senha){
+		$dao = new CorrentistaDAO();
+
+		return $dao->getCorrentistaByCpfAndSenha($cpf, $senha);		
 	}
 }

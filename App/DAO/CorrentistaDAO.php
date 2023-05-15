@@ -1,19 +1,21 @@
 <?php
+
 namespace App\DAO;
 
 use \PDO;
 use App\Model\CorrentistaModel;
 
-class CorrentistaDAO extends DAO {
+class CorrentistaDAO extends DAO
+{
 
-	public function __construct()
+    public function __construct()
     {
-        parent::__construct();      
+        parent::__construct();
     }
 
     public function insert(CorrentistaModel $model)
     {
-        $sql = "INSERT INTO Correntista(nome, cpf, data_nasc, senha) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO Correntista(nome, cpf, data_nasc, senha) VALUES (?, ?, ?, sha1(?))";
 
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1, $model->nome);
@@ -76,6 +78,23 @@ class CorrentistaDAO extends DAO {
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1, $id);
 
-        $stmt->execute();       
+        $stmt->execute();
+    }
+
+    public function getCorrentistaByCpfAndSenha($cpf, $senha)
+    {
+        $sql = "SELECT *             
+        FROM Correntista c             
+       
+        WHERE cpf = ? AND senha = sha1(?)
+        ";
+
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->bindValue(1, $cpf);
+        $stmt->bindValue(2, $senha);
+
+        $stmt->execute();
+
+        return $stmt->fetchObject();
     }
 }
