@@ -17,7 +17,7 @@ class CorrentistaController extends Controller {
 		$model->data_nasc = $json_obj->Data_Nasc;
 		$model->senha = $json_obj->Senha;
 		
-		$model->id = $model->save();
+		$model->save();
 		parent::getResponseAsJSON($model);
 	}
 
