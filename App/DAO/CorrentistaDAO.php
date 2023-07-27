@@ -24,7 +24,8 @@ class CorrentistaDAO extends DAO
         $stmt->bindValue(4, $model->senha);
         $stmt->execute();
 
-        return $this->conexao->lastInsertId();
+        $model->id = $this->conexao->lastInsertId();
+        return $model;
     }
 
     public function update(CorrentistaModel $model)

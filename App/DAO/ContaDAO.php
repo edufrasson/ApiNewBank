@@ -24,7 +24,8 @@ class ContaDAO extends DAO
         $stmt->bindValue(4, $model->id_correntista);
         $stmt->execute();
 
-        return $this->conexao->lastInsertId();
+        $model =  $this->conexao->lastInsertId();
+        return $model;
     }
 
     public function update(ContaModel $model)
