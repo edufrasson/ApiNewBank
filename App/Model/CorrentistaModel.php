@@ -1,10 +1,11 @@
 <?php
 namespace App\Model;
 
+use App\DAO\ContaDAO;
 use App\DAO\CorrentistaDAO;
 
 class CorrentistaModel extends Model {
-	public $id, $nome, $cpf, $data_nasc, $senha;
+	public $id, $nome, $cpf, $data_nasc, $senha, $saldo;
 	public $rows_conta = array();
 
 	
@@ -37,6 +38,12 @@ class CorrentistaModel extends Model {
 				$model_preenchida->rows_conta[] = $conta_poupanca;
 			}
 
+			$dao_conta = new ContaDAO();
+
+	
+			$saldo =  $dao_conta->selectByIdCorrentista($model_preenchida->id);
+			$model_preenchida->saldo = $saldo->saldo;
+		
 			return $model_preenchida;
 		}
 			
@@ -67,7 +74,13 @@ class CorrentistaModel extends Model {
 
 	public function auth($cpf, $senha){
 		$dao = new CorrentistaDAO();
+		$dao_conta = new ContaDAO();
 
-		return $dao->getCorrentistaByCpfAndSenha($cpf, $senha);		
+		
+		$model = new CorrentistaModel();
+		$model = $dao->getCorrentistaByCpfAndSenha($cpf, $senha);
+		$saldo =  $dao_conta->selectByIdCorrentista($model->id);
+		$model->saldo = $saldo->saldo;
+		return $model;	
 	}
 }

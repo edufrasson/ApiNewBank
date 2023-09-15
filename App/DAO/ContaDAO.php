@@ -76,6 +76,23 @@ class ContaDAO extends DAO
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
 
+    public function selectByIdCorrentista($id)
+    {
+        $sql = "SELECT c.saldo as saldo              
+                FROM Conta c              
+                JOIN Correntista co ON co.id = c.id_correntista
+                WHERE id_correntista = ? AND tipo = 'C'
+                ";
+
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->bindValue(1, $id);
+
+        $stmt->execute();
+
+        return $stmt->fetchObject();
+    }
+
+
     public function delete($id)
     {
         $sql = "DELETE FROM Conta WHERE id = ?";
